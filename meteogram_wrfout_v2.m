@@ -341,7 +341,7 @@ an.Position(2) = posfig(2) + posfig(4) + 0.1;
 posfig = ax(3).Position;
 
 dim = [0.2 0.5 0.3 0.3];
-str = {[TITLE], [' WE = ', num2str(WE), '; SN = ', num2str(SN), '; Levels = ', num2str(Levels), '; dx = ', num2str(DX),' m', '; Phys Opt = ', num2str(Phys_Opt), '; PBL Opt = ', num2str(PBL_Opt), '; Cu Opt = ', num2str(Cu_Opt)]};
+str = {[TITLE], [' WE = ', num2str(WE), '; SN = ', num2str(SN), '; Niveles = ', num2str(Levels), '; dx = ', num2str(DX),' m', '; Fisica = ', num2str(Phys_Opt), '; PBL = ', num2str(PBL_Opt), '; Cumulus = ', num2str(Cu_Opt)]};
 an = annotation('textbox', dim, 'String', str, 'FitBoxToText', 'on', 'Interpreter', 'none');
 an.FontSize = 9;
 an.FontWeight = 'b';
