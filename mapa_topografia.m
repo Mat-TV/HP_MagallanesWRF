@@ -22,7 +22,10 @@ m_proj('lambert','lon',[min(min(double(lon))) max(max(double(lon)))],...
         'lat',[min(min(double(lat))) max(max(double(lat)))]);
 m_pcolor(lon(:,:),lat(:,:),hgt(:,:));
 m_grid('box','fancy','tickdir','in');
-colormap(flipud(gray));
+
+hc=colormap(flipud(gray));
+title(hc,'[m]');
+
 ax1=m_contfbar(.97,[.5 .9],hgt(:,:), ...
     [64],'edgecolor','none','endpiece','no');
 title(ax1,{'Altitud [m]',''}); % Move up by inserting a blank line
