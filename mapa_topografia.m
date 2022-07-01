@@ -19,7 +19,7 @@ hgt=ncread([PATHin,filename],'HGT',[1,1,1],[100,100,1]);
 %%
 figure
 m_proj('lambert','lon',[min(min(double(lon))) max(max(double(lon)))],...
-        'lat',[min(min(double(lat))) max(max(double(lat)))]);
+'lat',[min(min(double(lat))) max(max(double(lat)))]);
 m_pcolor(lon(:,:),lat(:,:),hgt(:,:));
 m_grid('box','fancy','tickdir','in');
 
