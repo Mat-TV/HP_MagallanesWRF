@@ -30,7 +30,7 @@ ax1=m_contfbar(.97,[.5 .9],hgt(:,:), ...
     [64],'edgecolor','none','endpiece','no');
 title(ax1,{'Altitud [m]',''}); % Move up by inserting a blank line
 % colormap([m_colmap('blues',80);m_colmap('gland',48)]);
-title('Topografía del dominio 3.')
+title('Topografía del dominio 3')
 xlabel('Longitud','fontsize',12)
 ylabel('Latitud','fontsize',12)
 %   x_width=17.12 ;y_width=10.34;
