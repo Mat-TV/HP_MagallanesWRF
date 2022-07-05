@@ -33,7 +33,7 @@ wwind = wwind(:,2:end);
 %
 theta = ncread([PATHin,filename],'T',[1,1,1,1],[100,100,43,121]);%
 theta = squeeze(double(theta(positionx,:,:,:))); % (latitud,verticales,t)
-theta = theta + 300; % Temperatura potencial [K]
+theta = theta + 300 -273.15; % Temperatura potencial [°C]
 theta = mean(theta,3); % 
 %
 P=ncread([PATHin,filename],'P',[1 1 1 1],[1 1 Inf 1]);
@@ -63,11 +63,11 @@ wwind_pos(wwind_pos>40) = NaN;
 wwind_neg = min(wwind,-5);
 wwind_neg(wwind_neg==-5) = NaN;
 wwind_neg(wwind_neg<-40) = NaN;
-pintada = gray(100)
+pintada = gray(100);
 %
 figure
-ax1=axes
-ccpos=contourf(lat_plot,PT,wwind_pos')
+ax1=axes;
+ccpos=contourf(lat_plot,PT,wwind_pos');
 % colormap(pintada(51:100,:))
 hold on
 ccneg=contourf(lat_plot,PT,abs(wwind_neg)','--');
@@ -75,9 +75,9 @@ colormap(pintada(51:100,:))
 % shading interp
 ylabel('Presión [hPa]')
 xlabel('Latitud [°]')
-title("Sección meridional a " + mas_cercanox + " S, theta, y viento vertical")
-ax2=axes
-cct=contour(lat_plot,PT,theta','k','ShowText','on','linewidth',1.5)
+title("Sección meridional a " + mas_cercanox + " W, \theta [°C], y viento vertical [cm/s]")
+ax2=axes;
+cct=contour(lat_plot,PT,theta',[15 25 35 50 75 100 200],'k','ShowText','on','linewidth',1.5);
 linkaxes([ax1,ax2])
 ax2.Visible = 'off';
 ax2.XTick = [];
@@ -86,7 +86,10 @@ hf = fill_between(lat_plot,p,supP);
 hf.FaceColor = [.01 .01 .01];
 set([ax1,ax2],'Position',[.17 .11 .685 .815]);
 cb1 = colorbar(ax1,'Position',[.88 .11 .0675 .815]);
+cb1.Label.String = 'Velocidad vertical [cm/s] (negativo -> segmentado)';
 set([ax1 ax2], 'YDir','reverse')
 hold off
-%   saveas(gcf,'mapa_topografia.png')
+  set(gcf, 'PaperUnits', 'centimeters')
+  set(gcf, 'PaperPosition', [0 0 20 15]);
+  saveas(gcf,[PATHout,'perfil_theta'],'png')
 end
